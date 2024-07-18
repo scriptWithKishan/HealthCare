@@ -1,0 +1,13 @@
+{% extends 'medical/base_generic.html' %}
+
+{% block content %}
+  <h2>Doctor Dashboard</h2>
+  <h3>Patients</h3>
+  <ul>
+    {% for patient in patients %}
+      <li>{{ patient.username }}</li>
+    {% endfor %}
+  </ul>
+  <a href="{% url 'add_prescription' %}">Add Prescription</a>
+  <a href="{% url 'add_report' %}">Add Report</a>
+{% endblock %}

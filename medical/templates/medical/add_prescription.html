@@ -1,0 +1,11 @@
+{% extends 'bmedical/ase_generic.html' %}
+
+{% block content %}
+  <h2>Add Prescription</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Add</button>
+  </form>
+{% endblock %}
+
