@@ -7,16 +7,11 @@ class CustomUser(AbstractUser):
 
 class Patient(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    date_of_birth = models.DateField()
-    gender = models.CharField(max_length=10)
-    phone_number = models.CharField(max_length=20)
-    address = models.CharField(max_length=255)
 
 class Doctor(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
-    specialty = models.CharField(max_length=100)
-    phone_number = models.CharField(max_length=20)
-    address = models.CharField(max_length=255)
+    specialty = models.CharField(max_length=255, default='General')
+
 
 class Prescription(models.Model):
     patient = models.ForeignKey(Patient, on_delete=models.CASCADE)

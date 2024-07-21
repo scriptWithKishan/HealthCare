@@ -4,25 +4,151 @@
 <link href="{% static 'medical/add_prescription.css' %}" rel="stylesheet">
 {% endblock %}
 {% block content %}
-  <h2>Add Prescription</h2>
-  <form method="post" class="form-add-prescription">
-    {% csrf_token %}
-    <div class="form-group">
-      <label for="patient">Patient</label>
-      <input type="text" name="patient" id="patient" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="medication">Medication</label>
-      <input type="text" name="medication" id="medication" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="dosage">Dosage</label>
-      <input type="text" name="dosage" id="dosage" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="instructions">Instructions</label>
-      <textarea name="instructions" id="instructions" class="form-control" required></textarea>
-    </div>
-    <button type="submit" class="btn btn-primary">Add Prescription</button>
-  </form>
+  <div class="navbar">
+    <h1>HealthCart</h1>
+    <form method="post" class="logout-form">
+      {% csrf_token %}
+      <button type="submit" name="logout" class="btn btn-logout">Logout</button>
+    </form>
+  </div>
+
+  <div class="form-container">
+    <h2>Add Prescription</h2>
+    <form method="post">
+      {% csrf_token %}
+      <label for="patient">Patient:</label>
+      <select name="patient" required>
+        {% for patient in patients %}
+          <option value="{{ patient.id }}">{{ patient.user.username }}</option>
+        {% endfor %}
+      </select>
+      <label for="medication">Medication:</label>
+      <input type="text" name="medication" required>
+      <label for="dosage">Dosage:</label>
+      <input type="text" name="dosage" required>
+      <label for="frequency">Frequency:</label>
+      <input type="text" name="frequency" required>
+      <label for="start_date">Start Date:</label>
+      <input type="date" name="start_date" required>
+      <label for="end_date">End Date:</label>
+      <input type="date" name="end_date" required>
+      <label for="notes">Notes:</label>
+      <textarea name="notes"></textarea>
+      <button type="submit" class="btn btn-submit">Add Prescription</button>
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+    </form>
+  </div>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .navbar {
+      background-color: #0056b3;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .navbar .logout-form {
+      margin: 0;
+    }
+
+    .navbar .btn-logout {
+      background-color: #d9534f;
+      padding: 8px 16px;
+    }
+
+    .navbar .btn-logout:hover {
+      background-color: #c9302c;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 80px auto 20px auto; /* Margin to account for the fixed navbar */
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    select,
+    input[type="text"],
+    input[type="date"],
+    textarea {
+      margin-top: 5px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    select:focus,
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    textarea:focus {
+      border: 1px solid #0056b3;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #0056b3;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #004494;
+    }
+
+    .error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
 {% endblock %}

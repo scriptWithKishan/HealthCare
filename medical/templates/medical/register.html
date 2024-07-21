@@ -6,39 +6,120 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Register</title>
-  <link href="{% static 'medical/Register.css' %}" rel="stylesheet" />
+  <link href="{% static 'medical/register.css' %}" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #f4f4f9;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .register-container {
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #555;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="checkbox"] {
+      margin-top: 5px;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      outline: none;
+      transition: border 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="password"]:focus {
+      border: 1px solid #0056b3;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .checkbox-container label {
+      margin-top: 0;
+      margin-left: 10px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #0056b3;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #004494;
+    }
+
+    p.error {
+      color: red;
+      text-align: center;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <div>
+  <div class="register-container">
     <h2>Register</h2>
-  <form method="post" class="form-register">
-    {% csrf_token %}
-    {% if error %}
-      <div class="alert alert-danger">{{ error }}</div>
-    {% endif %}
-    <div class="form-group">
-      <label for="username">Username</label>
-      <input type="text" name="username" id="username" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input type="email" name="email" id="email" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="password1">Password</label>
-      <input type="password" name="password1" id="password1" class="form-control" required>
-    </div>
-    <div class="form-group">
-      <label for="password2">Confirm Password</label>
-      <input type="password" name="password2" id="password2" class="form-control" required>
-    </div>
-    <div class="form-group form-check">
-      <input type="checkbox" name="is_patient" id="is_patient" class="form-check-input">
-      <label for="is_patient" class="form-check-label">Register as Patient</label>
-    </div>
-    <button type="submit" class="btn btn-primary">Register</button>
-  </form>
-  <p>Already have an accout <a href="{% url 'login' %}">login here</a></p>
+    <form method="post">
+      {% csrf_token %}
+      <label for="username">Username:</label>
+      <input type="text" name="username" required>
+      <label for="email">Email:</label>
+      <input type="email" name="email" required>
+      <label for="password1">Password:</label>
+      <input type="password" name="password1" required>
+      <label for="password2">Confirm Password:</label>
+      <input type="password" name="password2" required>
+      <div class="checkbox-container">
+        <input type="checkbox" name="is_patient">
+        <label for="is_patient">Register as Patient</label>
+      </div>
+      <div class="checkbox-container">
+        <input type="checkbox" name="is_doctor">
+        <label for="is_doctor">Register as Doctor</label>
+      </div>
+      <button type="submit">Register</button>
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+    </form>
   </div>
 </body>
 </html>

@@ -1,17 +1,115 @@
 {% extends 'medical/base_generic.html' %}
 
 {% block content %}
-  <h2>Doctor Dashboard</h2>
-  <h3>Patients</h3>
-  <ul>
-    {% for patient in patients %}
-      <li>{{ patient.username }}</li>
-    {% endfor %}
-  </ul>
-  <form method="post">
-    {% csrf_token %}
-    <button type="submit" name="logout">Logout</button>
-  </form>
-  <a href="{% url 'add_prescription' %}">Add Prescription</a>
-  <a href="{% url 'add_report' %}">Add Report</a>
+  <div class="navbar">
+    <h1>HealthCart</h1>
+    <form method="post" class="logout-form">
+      {% csrf_token %}
+      <button type="submit" name="logout" class="btn btn-logout">Logout</button>
+    </form>
+  </div>
+
+  <div class="dashboard-container">
+    <h2>Doctor Dashboard</h2>
+    <div class="actions">
+      <a href="{% url 'add_prescription' %}" class="btn">Add Prescription</a>
+      <a href="{% url 'add_report' %}" class="btn">Add Report</a>
+    </div>
+    
+    <h3>Patients</h3>
+    <ul class="patient-list">
+      {% for patient in patients %}
+        <li>{{ patient.username }}</li>
+      {% endfor %}
+    </ul>
+
+    
+  </div>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .navbar {
+      background-color: #0056b3;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      left: 0;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar h1 {
+      margin: 0;
+      font-size: 24px;
+    }
+
+    .navbar .logout-form {
+      margin: 0;
+    }
+
+    .navbar .btn-logout {
+      background-color: #d9534f;
+      padding: 8px 16px;
+    }
+
+    .navbar .btn-logout:hover {
+      background-color: #c9302c;
+    }
+
+    .dashboard-container {
+      max-width: 800px;
+      margin: 80px auto 20px auto; /* Add margin to account for the fixed navbar */
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    h3 {
+      color: #555;
+    }
+
+    .patient-list {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .patient-list li {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+    }
+
+    .actions {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      margin: 5px;
+      background-color: #0056b3;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #004494;
+    }
+  </style>
 {% endblock %}
