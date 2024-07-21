@@ -8,6 +8,10 @@
       <li>{{ patient.username }}</li>
     {% endfor %}
   </ul>
+  <form method="post">
+    {% csrf_token %}
+    <button type="submit" name="logout">Logout</button>
+  </form>
   <a href="{% url 'add_prescription' %}">Add Prescription</a>
   <a href="{% url 'add_report' %}">Add Report</a>
 {% endblock %}
