@@ -5,7 +5,7 @@
 {% endblock %}
 {% block content %}
   <h2>Add Prescription</h2>
-  <form method="post" class="form-add-prescription">
+  <form method="post" action="{%url 'add_prescription'%}" class="form-add-prescription">
     {% csrf_token %}
     <div class="form-group">
       <label for="patient">Patient</label>
