@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link href="{% static 'medical/login.css' %}" rel="stylesheet" />
+</head>
+<body>
+  <div class="container">
+    <form method="post">
+      <h1>Login to Health Monitoring System</h1>
+      {% csrf_token %}
+        <label class="login-label" for="username">Username</label><br>
+        <input class="login-input" placeholder="username" type="text" name="username" required>
+    
+        <label class="login-label" for="password">Password </label><br>
+        <input class="login-input" type="password" name="password" required placeholder="password">
+
+        <button class="btn" type="submit">Sign in</button>
+    </form>
+    <p class="go-to-register">Don't have account <a href="{% url 'register' %}">Register here</a></p>
+    {% if message %}
+      <p class="error-msg">*{{ message }}</p>
+    {% endif %}
+  </div>
+</body>
+</html>

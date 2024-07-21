@@ -1,0 +1,21 @@
+{% extends 'medical/base_generic.html' %}
+
+{% block content %}
+  <h2>Patient Dashboard</h2>
+  <form method="post">
+    {% csrf_token  %}
+    <button type="submit">Logout</button>
+  </form>
+  <h3>Prescriptions</h3>
+  <ul>
+    {% for prescription in prescriptions %}
+      <li>{{ prescription.medication }} - {{ prescription.dosage }}</li>
+    {% endfor %}
+  </ul>
+  <h3>Reports</h3>
+  <ul>
+    {% for report in reports %}
+      <li>{{ report.diagnosis }} - {{ report.treatment }}</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

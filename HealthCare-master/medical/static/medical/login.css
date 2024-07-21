@@ -1,0 +1,59 @@
+
+body {
+    background: url(bg.jpg) ;
+    background-size: cover;
+}
+
+.container {
+    position: absolute;
+    top: 15% ;
+    left: 55%;
+    font-family: sans-serif;
+}
+
+.container h1{
+    color: #15082d;
+    border-bottom:5px ;
+    margin-bottom:40px ;
+    padding:10px ;
+}
+
+form {
+    width: 100%;
+}
+
+.login-label {
+    font-size: 20px;
+    color: #15082d;
+}
+
+.login-input {
+    width: 75%;
+    outline: none;
+    border: 0px solid #ccc;
+    border-radius: 8px;
+    color: rgb(94, 94, 94);
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    padding-left: 10px;
+    display: block;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+
+.btn {
+    cursor: pointer;
+    outline: none;
+    height: 30px;
+    border: 0px solid #ccc;
+    width: 80px;
+    margin: 12px 0;
+    border-radius: 5px;
+}
+
+.error-msg {
+    color: #ff0000;
+    font-size: 12px;
+    margin: 0;
+}

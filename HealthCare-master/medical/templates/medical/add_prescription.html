@@ -1,0 +1,28 @@
+{% extends 'medical/base_generic.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static 'medical/add_prescription.css' %}" rel="stylesheet">
+{% endblock %}
+{% block content %}
+  <h2>Add Prescription</h2>
+  <form method="post" class="form-add-prescription">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="patient">Patient</label>
+      <input type="text" name="patient" id="patient" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="medication">Medication</label>
+      <input type="text" name="medication" id="medication" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="dosage">Dosage</label>
+      <input type="text" name="dosage" id="dosage" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="instructions">Instructions</label>
+      <textarea name="instructions" id="instructions" class="form-control" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Prescription</button>
+  </form>
+{% endblock %}
